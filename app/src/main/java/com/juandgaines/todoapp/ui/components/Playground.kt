@@ -77,19 +77,41 @@ fun ClickableTextExamplePreview() {
     }
 }
 
+
+
+@Composable
+fun RowView(){
+    Row(modifier = Modifier.background(Color.Yellow).padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+
+    ) {
+        HelloWorld()
+        IconExample( iconContainer = IconContainer(Icons.Default.Star,  Color.Blue))
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun RowViewPreview() {
+    TodoAppTheme {
+        RowView()
+    }
+}
+
 @Composable
 fun IconExample(
     modifier: Modifier= Modifier,
-    iconContainer: IconContainer
+    iconContainer: IconContainer,
 ){
     Icon(
         imageVector = iconContainer.icon,
         contentDescription = "Favorite Icon",
-        tint = Color.Blue,
+        tint = iconContainer.color,
         modifier = modifier
             .size(48.dp)
             .border(width = 1.dp, Color.Blue, shape = CircleShape)
-           .padding(4.dp))
+            .padding(4.dp))
 }
 @Preview
 @Composable
@@ -104,35 +126,15 @@ fun IconExamplePreview(
 }
 
 @Composable
-fun RowView(){
-    Row(modifier = Modifier.background(Color.Yellow).padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
-
-    ) {
-        HelloWorld()
-        IconExample( iconContainer = IconContainer(Icons.Default.Favorite))
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun RowViewPreview() {
-    TodoAppTheme {
-        RowView()
-    }
-}
-
-@Composable
 fun ColumnView(){
     Column(modifier = Modifier.background(Color.Yellow).padding(8.dp),verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally) {
         HelloWorld()
-        Row(){
-            IconExample( iconContainer = IconContainer(Icons.Default.Star))
-            IconExample( iconContainer = IconContainer(Icons.Default.Favorite))
-            IconExample( iconContainer = IconContainer(Icons.Default.Star))
-            IconExample( iconContainer = IconContainer(Icons.Default.Favorite))
+        Row{
+            IconExample( iconContainer = IconContainer(Icons.Default.Star, Color.Red))
+            IconExample( iconContainer = IconContainer(Icons.Default.Favorite, Color.White))
+            IconExample( iconContainer = IconContainer(Icons.Default.Star, Color.Black))
+            IconExample( iconContainer = IconContainer(Icons.Default.Favorite,  Color.Black))
         }
 
     }
